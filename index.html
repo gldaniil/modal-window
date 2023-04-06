@@ -12,20 +12,27 @@
 <body>
   <button id="myBtn" class="myBtn">Открыть модальное окно</button>
 
-  <div class="modal" id="modal">
+  <div class="modal" id="modal" style="display: block;">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Получить бесплатную консультацию юриста</h2>
-      <form>
-        <div class="first">
-          <label for="phone">Номер телефона:</label>
+      <div class="modal-close">
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal__title-box">
+        <h2 class="modal__title">Получить бесплатную консультацию юриста</h2>
+        <p class="modal__text">Оставьте свой номер телефона и мы Вам перезвоним</p>
+      </div>
+      <form class="modal__form-group">
+        <div class="modal__row modal__form-name">
+          <!-- <label for="name">Имя:</label> -->
+          <input type="text" id="name" name="name" placeholder="Введите имя">
+          <div class="modal__input-error"></div>
+        </div>
+        <div class="modal__row modal__form-phone">
+          <!-- <label for="phone">Номер телефона:</label> -->
           <input type="tel" id="phone" name="phone" placeholder="+7 (___)-___-__-__">
+          <div class="modal__input-error"></div>
         </div>
-        <div class="second">
-          <label for="name">Имя:</label>
-          <input type="text" id="name" name="name">
-        </div>
-        <button type="submit">Отправить</button>
+        <button class="modal__form-submit" type="submit">Отправить</button>
       </form>
     </div>
   </div>
