@@ -29,6 +29,14 @@ p {
   border: 1px solid #888;
   box-shadow: 0 0 5px 5px rgba(0,0,0,0.15); 
 }
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: auto;
+    margin: 50% 0;
+  }
+}
+
 .modal-close {
   /* position: absolute; */
   text-align: right;
