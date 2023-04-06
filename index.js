@@ -38,7 +38,7 @@ function maskedPhone(e) {
    reg = new RegExp(`^${reg}$`);
   if (!reg.test(this.value) || this.value.length < 5) this.value = newVal;
 
-  if (e.keyCode === 8 || e.keyCode === 46 && this.value.length > 0) {
+  if (e.keyCode === 8 || e.keyCode === 46 || e.keyCode === 151 && this.value.length > 0) {
     // удаляем значение
     this.value = this.value.replace(/\d(?=[^\d]*$)/, '_');
   }
