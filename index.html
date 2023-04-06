@@ -17,23 +17,27 @@
       <div class="modal-close">
         <span class="close">&times;</span>
       </div>
-      <div class="modal__title-box">
-        <h2 class="modal__title">Получить бесплатную консультацию юриста</h2>
-        <p class="modal__text">Оставьте свой номер телефона и мы Вам перезвоним</p>
+      <div class="modal__block-suggest">
+        <div class="modal__title-box">
+          <h2 class="modal__title">Получить бесплатную консультацию юриста</h2>
+          <p class="modal__text">Оставьте свой номер телефона и мы Вам перезвоним</p>
+        </div>
+        <form class="modal__form-group">
+          <div class="modal__row modal__form-name">
+            <input type="text" id="name" name="name" placeholder="Введите имя">
+            <div class="modal__input-error"></div>
+          </div>
+          <div class="modal__row modal__form-phone">
+            <input type="tel" id="phone" name="phone" placeholder="+7 (___)-___-__-__">
+            <div class="modal__input-error"></div>
+          </div>
+          <div class="modal__form-call">
+            <button id="btn-submit" class="modal__form-submit" type="submit">Заказать звонок</button>
+            <span class="modal__call-terms">Нажимая кнопку «Заказать звонок», 
+              Вы соглашаетесь с <a href="#">Политикой конфиденциальности</a></span>
+          </div>
+        </form>
       </div>
-      <form class="modal__form-group">
-        <div class="modal__row modal__form-name">
-          <!-- <label for="name">Имя:</label> -->
-          <input type="text" id="name" name="name" placeholder="Введите имя">
-          <div class="modal__input-error"></div>
-        </div>
-        <div class="modal__row modal__form-phone">
-          <!-- <label for="phone">Номер телефона:</label> -->
-          <input type="tel" id="phone" name="phone" placeholder="+7 (___)-___-__-__">
-          <div class="modal__input-error"></div>
-        </div>
-        <button class="modal__form-submit" type="submit">Отправить</button>
-      </form>
     </div>
   </div>
   <script src="index.js"></script>

@@ -60,8 +60,11 @@ p {
 .myBtn {
   padding: 10px 5px;
 }
+.modal__block-suggest {
+  margin-top: 20px;
+}
 .modal__title-box {
-  margin: 20px 0 10px 0;
+  margin: 0 0 10px 0;
 }
 .modal__title {
   font-size: 28px;
@@ -70,10 +73,13 @@ p {
 .modal__text {
   padding: 20px 0;
 }
-.modal__row {
+.modal__form-name {
   margin-bottom: 20px;
 }
-
+.modal__form-phone {
+  margin-bottom: 30px;
+}
+.modal__row {}  
 .modal__row input {
   cursor: pointer;
   height: 40px;
@@ -107,17 +113,21 @@ p {
   display: block;
   width: 100%;
   padding: 15px 15px;
-  margin: 5px 0;
+  margin: 0 0 10px 0;
   border: 1px solid #b7a088;
   border-radius: 17.5px;
   color: #fefefe;
   background-color: #b7a088;
   font-size: 14px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
+  font-weight: bolder;
   text-align: center;
   text-decoration: none;
   transition: all ease-in-out 0.3s;
 }
 .modal__form-submit:hover {
   background-color: #b8a898;
+}
+.modal__call-terms {
+  font-size: 10px;
 }

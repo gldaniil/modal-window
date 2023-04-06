@@ -7,6 +7,7 @@ document.getElementById("myBtn").addEventListener("click", function() {
 document.querySelectorAll(".close, .modal").forEach(function(elem) {
   elem.addEventListener("click", function() {
     document.querySelector(".modal").style.display = "none";
+    nameInput.value = "";
     phoneInput.value = ""; // Очистка поля ввода
   });
 });
@@ -17,7 +18,8 @@ document.querySelector(".modal-content").addEventListener("click", function(even
 });
 
 const phoneInput = document.querySelector("#phone");
-const nameInput = document.querySelector("#name")
+const nameInput = document.querySelector("#name");
+const submitBtn = document.querySelector("#btn-submit");
 
 let keyCode;
 function maskedPhone(e) {
@@ -47,7 +49,7 @@ function maskedPhone(e) {
     this.setSelectionRange(this.value.length, this.value.length);
   }
 }
-
+// Пол
 function maskedPhoneValidation(e) {
   let counter = 0;
   for (let val of this.value) {
@@ -55,41 +57,36 @@ function maskedPhoneValidation(e) {
       counter++;
     }
   }
-
   if (counter != 11) {
     this.value = ""
-    if (this.classList.contains('is-valid')) {
-      this.classList.remove('is-valid')
-    }
-    this.classList.add("is-invalid")
-    addBlockMessage(this.nextElementSibling, true)
+    addBlockMessage(this, true)
   } else {
-    if (this.classList.contains('is-invalid')) {
-      this.classList.remove('is-invalid')
-    }
-    this.classList.add("is-valid")
-    addBlockMessage(this.nextElementSibling, false)
+    addBlockMessage(this, false)
   }
 }
 
-const addBlockMessage = (e, b) => {
-  b ? e.innerHTML = "Необходимо заполнить поле" : e.innerHTML = ""
+const addBlockMessage = (e, b = true) => {
+  if (b) {
+    if (e.classList.contains('is-valid')) {
+      e.classList.remove('is-valid')
+    }
+    e.classList.add('is-invalid')
+    e.nextElementSibling.innerHTML = "Необходимо заполнить поле"
+  } else {
+    if (e.classList.contains('is-invalid')) {
+      e.classList.remove('is-invalid')
+    }
+    e.classList.add("is-valid")
+    e.nextElementSibling.innerHTML = ""
+  }
 }
 
 function nameValidation(e) {
   if (this.value.length < 2) {
     this.value = ""
-    if (this.classList.contains('is-valid')) {
-      this.classList.remove('is-valid')
-    }
-    this.classList.add("is-invalid")
-    addBlockMessage(this.nextElementSibling, true)
+    addBlockMessage(this, true)
   } else {
-    if (this.classList.contains('is-invalid')) {
-      this.classList.remove('is-invalid')
-    }
-    this.classList.add("is-valid")
-    addBlockMessage(this.nextElementSibling, false)
+    addBlockMessage(this, false)
   }
 }
 
@@ -100,6 +97,8 @@ function maskedName(e) {
   }
 };
 
+
+
 phoneInput.addEventListener("input", maskedPhone)
 phoneInput.addEventListener("focus", maskedPhone)
 phoneInput.addEventListener("blur", maskedPhoneValidation)
@@ -107,3 +106,15 @@ phoneInput.addEventListener("keydown", maskedPhone)
 
 nameInput.addEventListener("input", maskedName)
 nameInput.addEventListener("blur", nameValidation)
+
+submitBtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  for (let el of [nameInput, phoneInput]) {
+    if (el.value === '') {
+      // Если поля ввода пустые
+      addBlockMessage(el)
+      console.log(el) 
+    } else { }
+  }
+  // console.log(phoneInput.value)
+})
