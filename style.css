@@ -81,9 +81,10 @@ p {
   width: 100%;
   padding: 0 17.5px;
   outline: none;
-  border: 1px solid #c3c3c3;
+  border: 2px solid #c3c3c3;
   box-sizing: border-box;
   border-radius: 8px;
+  transition: border .25s;
 }
 .modal__row span {
   text-align: left;
