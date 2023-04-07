@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
+  let element = document.getElementById('phone');
+  let maskOptions = new IMask (element, {
+      mask: '+{7} (000) 000-00-00',
+      startsWith: '+7',
+      country: 'Russia',
+      placeholderChar: '_',
+      lazy: false
+    });
+
   const phoneInputs = document.querySelectorAll("#phone");
   const nameInputs = document.querySelectorAll("#name");
   const submitBtns = document.querySelectorAll("#btn-submit");
@@ -18,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         el.nextElementSibling.innerHTML = ""
       });
       [...phoneInputs].forEach((el) => { 
-        el.value = "", 
+        maskOptions.unmaskedValue = "",
         el.className = "",
         el.nextElementSibling.innerHTML = ""
       }); // Очистка поля ввода
@@ -33,14 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Пол
   function maskedPhoneValidation(e) {
     let counter = 0;
-    if (this.value[1] != "7") this.value = `+7${this.value.slice(2)}`
     for (let val of this.value) {
       if (!isNaN(parseInt(val))) {
         counter++;
       }
     }
     if (counter != 11) {
-      this.value = ""
+      maskOptions.unmaskedValue = ''
       addBlockMessage(this, true)
     } else {
       addBlockMessage(this, false)
@@ -79,83 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  let getInputNumbersValue = function (input) {
-      // Return stripped input value — just numbers
-      return input.value.replace(/\D/g, '');
-  }
-
-  let onPhonePaste = function (e) {
-      let input = e.target,
-          inputNumbersValue = getInputNumbersValue(input);
-      let pasted = e.clipboardData || window.clipboardData;
-      if (pasted) {
-          let pastedText = pasted.getData('Text');
-          if (/\D/g.test(pastedText)) {
-              // Attempt to paste non-numeric symbol — remove all non-numeric symbols,
-              // formatting will be in onPhoneInput handler
-              input.value = inputNumbersValue;
-              return;
-          }
-      }
-  }
-
-  let onPhoneInput = function (e) {
-      let input = e.target,
-          inputNumbersValue = getInputNumbersValue(input),
-          selectionStart = input.selectionStart,
-          formattedInputValue = "";
-      console.log(input.selectionStart)
-      if (!inputNumbersValue) {
-          return input.value = "";
-      }
-
-      if (input.value.length != selectionStart) {
-          // Editing in the middle of input, not last symbol
-          if (e.data && /\D/g.test(e.data)) {
-              // Attempt to input non-numeric symbol
-              input.value = inputNumbersValue;
-          }
-          return;
-      }
-
-      if (["0", "1", "2", "3", "4", "5", "6" ,"7", "8", "9"].indexOf(inputNumbersValue[0]) > -1) {
-          if (inputNumbersValue[0] != "7") inputNumbersValue = "7" + inputNumbersValue;
-          let firstSymbols = "+7"
-          formattedInputValue = input.value = firstSymbols + " ";
-          if (inputNumbersValue.length > 0) {
-              formattedInputValue += '(' + inputNumbersValue.substring(1, 4);
-          }
-          if (inputNumbersValue.length >= 5) {
-              formattedInputValue += ') ' + inputNumbersValue.substring(4, 7);
-          }
-          if (inputNumbersValue.length >= 8) {
-              formattedInputValue += '-' + inputNumbersValue.substring(7, 9);
-          }
-          if (inputNumbersValue.length >= 10) {
-              formattedInputValue += '-' + inputNumbersValue.substring(9, 11);
-          }
-      } else {
-          formattedInputValue = '+' + inputNumbersValue.substring(0, 16);
-      }
-      console.log(formattedInputValue)
-      input.value = formattedInputValue;
-  }
-  let onPhoneKeyDown = function (e) {
-      // Clear input after remove last symbol
-      let inputValue = e.target.value.replace(/\D/g, '');
-      if (e.keyCode == 8 && inputValue.length == 1) {
-          e.target.value = "";
-      }
-  }
   for (let phoneInput of phoneInputs) {
-      phoneInput.addEventListener('keydown', onPhoneKeyDown);
-      phoneInput.addEventListener('input', onPhoneInput);
-      phoneInput.addEventListener('paste', onPhonePaste);
-      phoneInput.addEventListener('blur', maskedPhoneValidation)
-      phoneInput.addEventListener('focus', function(e) {
-        e.target.value = '+7 ('
-        // e.target.setSelectionRange(4,4)
-      })
+    phoneInput.addEventListener('blur', maskedPhoneValidation)
   }
 
   for (let nameInput of nameInputs) {
