@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Пол
   function maskedPhoneValidation(e) {
     let counter = 0;
+    if (this.value[1] != "7") this.value = `+7${this.value.slice(2)}`
     for (let val of this.value) {
       if (!isNaN(parseInt(val))) {
         counter++;
