@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
           inputNumbersValue = getInputNumbersValue(input),
           selectionStart = input.selectionStart,
           formattedInputValue = "";
-
+      console.log(input.selectionStart)
       if (!inputNumbersValue) {
           return input.value = "";
       }
@@ -152,6 +152,10 @@ document.addEventListener("DOMContentLoaded", function () {
       phoneInput.addEventListener('input', onPhoneInput);
       phoneInput.addEventListener('paste', onPhonePaste);
       phoneInput.addEventListener('blur', maskedPhoneValidation)
+      phoneInput.addEventListener('focus', function(e) {
+        e.target.value = '+7 ('
+        // e.target.setSelectionRange(4,4)
+      })
   }
 
   for (let nameInput of nameInputs) {
