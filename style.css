@@ -151,8 +151,9 @@ p {
 .modal__result-close {
   position: absolute;
   bottom: 25px;
-  right: 25px;
-
+  right: 50%;
+  transform: translate(50%, 0);
+  width: 50%;
   margin: 0;
   padding: 10px 15px;
   border: 1px solid #b7a088;
@@ -165,4 +166,8 @@ p {
   text-align: center;
   text-decoration: none;
   transition: all ease-in-out 0.3s;
+}
+
+.modal__result-title p {
+  margin-bottom: 5px;
 }
