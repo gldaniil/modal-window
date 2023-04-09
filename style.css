@@ -131,3 +131,38 @@ p {
 .modal__call-terms {
   font-size: 10px;
 }
+.modal__result-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+.modal__result-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.modal__result-title {
+  /* height: 100%; */
+}
+.modal__result-close {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+
+  margin: 0;
+  padding: 10px 15px;
+  border: 1px solid #b7a088;
+  border-radius: 17.5px;
+  color: #fefefe;
+  background-color: #b7a088;
+  font-size: 14px;
+
+  font-weight: bolder;
+  text-align: center;
+  text-decoration: none;
+  transition: all ease-in-out 0.3s;
+}

@@ -22,17 +22,13 @@
           <h2 class="modal__title">Получить бесплатную консультацию юриста</h2>
           <p class="modal__text">Оставьте свой номер телефона и мы Вам перезвоним</p>
         </div>
-        <form class="modal__form-group">
+        <form class="modal__form-group" method="post" action="/api/form">
           <div class="modal__row modal__form-name">
             <input type="text" id="name" name="name" placeholder="Введите имя">
             <div class="modal__input-error"></div>
           </div>
           <div class="modal__row modal__form-phone">
-            <input type="tel"
-            name="phone"
-            id="phone"
-            placeholder="+7 (000) 000-00-00"
-            >
+            <input type="tel" name="phone" id="phone" placeholder="+7 (000) 000-00-00">
             <div class="modal__input-error"></div>
           </div>
           <div class="modal__form-call">
@@ -42,9 +38,16 @@
           </div>
         </form>
       </div>
-      <!-- <div class="modal__block-success">
-        <span></span>
-      </div> -->
+      <div class="modal__result-block">
+        <div class="modal__result-body">
+          <div class="modal__result-title">
+            <span>Заявка успешно отправлена!</span>
+          </div>
+        </div>
+        <div class="modal__result-close">
+          <span>Хорошо</span>
+        </div>
+      </div>
     </div>
   </div>
   <script src="index.js"></script>

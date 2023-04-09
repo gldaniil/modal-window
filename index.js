@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const phoneInputs = document.querySelectorAll("#phone");
   const nameInputs = document.querySelectorAll("#name");
   const submitBtns = document.querySelectorAll("#btn-submit");
+  const submitModalForm = document.querySelector("form.modal__form-group");
 
     // Открыть модальное окно при клике на кнопку
   document.getElementById("myBtn").addEventListener("click", function() {
@@ -80,6 +81,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  const dataRequest = async (testName, testPhone) => {
+    console.log(testName, testPhone)
+    await fetch("/api/form", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Allow": "POST",
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ testName, testPhone })
+    })
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
+  }
+
+  let formSubmission = function(e) {
+    e.preventDefault()
+    let counter = 0
+    const testName = e.target[0]
+    const testPhone = e.target[1]
+    for (let el of [testName, testPhone]) {
+      if (el.value === '' || el.value === '+7 (___) ___-__-__') {
+        addBlockMessage(el)
+      } else counter++
+    }
+    if (counter == 2) {
+      dataRequest(testName.value, testPhone.value)
+    }
+  }
+
   function maskedName(e) {
     const pattern = /^[a-zA-Zа-яА-Я]+$/; // регулярное выражение для букв
     if (!pattern.test(this.value)) {
@@ -96,17 +129,19 @@ document.addEventListener("DOMContentLoaded", function () {
     nameInput.addEventListener("blur", nameValidation)
   }
 
-  for (let submitBtn of submitBtns) {
-    submitBtn.addEventListener("click", function(e) {
-      e.preventDefault();
-      for (let el of [...nameInputs, ...phoneInputs]) {
-        if (el.value === '') {
-          // Если поля ввода пустые
-          addBlockMessage(el)
-          console.log(el) 
-        } else { }
-      }
-      // console.log(phoneInput.value)
-    })
-  }
+  // for (let submitBtn of submitBtns) {
+  //   submitBtn.addEventListener("click", function(e) {
+  //     e.preventDefault();
+  //     for (let el of [...nameInputs, ...phoneInputs]) {
+  //       if (el.value === '') {
+  //         // Если поля ввода пустые
+  //         addBlockMessage(el)
+  //         console.log(el) 
+  //       } else { }
+  //     }
+  //     // console.log(phoneInput.value)
+  //   })
+  // }
+
+  submitModalForm.addEventListener("submit", formSubmission)
 })
