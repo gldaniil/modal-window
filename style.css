@@ -150,12 +150,19 @@ p {
   position: absolute;
   top: 15%;
   font-size: 54px;
-  color: #43b02a;
+  color: #f11b1b;
+  /* color: #43b02a; */
+}
+.modal__result-title {
+  margin-top: 20px;
 }
 .modal__result-title p:first-child {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   font-size: 24px;
   font-weight: bold;
+}
+.modal__result-title p:last-child {
+  padding: 0 5px;
 }
 .modal__result-close {
   position: absolute;
