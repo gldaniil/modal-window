@@ -148,8 +148,8 @@ p {
 }
 .modal__result-icon {
   position: absolute;
-  top: 25%;
-  font-size: 48px;
+  top: 15%;
+  font-size: 54px;
   color: #43b02a;
 }
 .modal__result-title p:first-child {
@@ -159,7 +159,7 @@ p {
 }
 .modal__result-close {
   position: absolute;
-  bottom: 25px;
+  bottom: 35px;
   right: 50%;
   transform: translate(50%, 0);
   width: 50%;
