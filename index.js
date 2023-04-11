@@ -205,11 +205,9 @@ document.addEventListener("DOMContentLoaded", function () {
         counter++;
       }
     }
-    if (counter != 11) {
-      addBlockMessage(this, true)
-    } else {
+    if (counter == 11) {
       addBlockMessage(this, false)
-    }
+    } 
   }
 
   for (let phoneInput of phoneInputs) {
