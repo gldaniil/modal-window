@@ -15,13 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Открыть модальное окно при клике на кнопку
   document.getElementById("myBtn").addEventListener("click", function() {
-    document.querySelector(".modal").style.display = "block";
+    document.querySelector(".modal").classList.add('open');
   });
 
   // Закрыть модальное окно при клике на крестик или за его пределами
   document.querySelectorAll(".close, .modal").forEach(function(elem) {
     elem.addEventListener("click", function() {
-      document.querySelector(".modal").style.display = "none";
+      document.querySelector(".modal").classList.remove('open');
       [...nameInputs].forEach((el) => { 
         el.value = "", 
         el.className = "",
@@ -72,6 +72,66 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  const resultOperation = (data, statusCode = 400) => {
+    let color, title, icon, text, end;
+    if (statusCode === 200) {
+      // Получили ответ от сервера
+      color = 'modal__success';
+      icon = 'fa-check';
+      title = 'Спасибо за обращение!';
+      text = 'Наш юрист свяжется с Вами в течение 15 минут.';
+      end = `<div class="modal__result-close">
+        <span class="modal__result-link">
+        Вернуться к странице</span>
+      </div>`
+      console.log(statusCode)
+    } else {
+      // Возникла ошибка
+      color = 'modal__fail';
+      icon = 'fa-xmark';
+      title = 'Возникла ошибка при отправке!';
+      text = 'Ваше обращение очень важно для нас.<br>Пожалуйста, свяжитесь с нами другим способом.';
+      end = `<div class="modal__result-call">
+        <div class="modal__result-phone">
+          <a href="tel:+79221749653" class="modal__result-link">+7 (922) 174-96-53</a>
+        </div>
+        <div class="modal__result-whatsapp">
+          <a href="https://wa.me/+79221749653" target="_blank" class="modal__result-link">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+        <div class="modal__result-telegram">
+          <a href="https://t.me/+79221749653" target="_blank" class="modal__result-link">
+            <i class="fab fa-telegram"></i>
+          </a>
+        </div>
+      </div>`
+      // console.log(data)
+    }
+
+    let el = document.querySelector('.modal-content')
+    el.insertAdjacentHTML('beforeend', `
+    <div class="modal__result-block">
+        <div class="modal__result-body">
+          <div class="modal__result-icon">
+            <i class="fa-solid ${icon} ${color}"></i>
+          </div>
+          <div class="modal__result-title">
+            <p class=${color}>${title}</p>
+            <p>${text}</p>
+          </div>
+        </div>
+        ${end}
+    </div>`)
+
+    let links = el.lastElementChild.querySelectorAll('.modal__result-link')
+    for (let link of links) {
+      link.addEventListener("click", function(e) {
+        console.log('clicked')
+      })
+    }
+  }
+
   function nameValidation(e) {
     if (this.value.length < 2) {
       this.value = ""
@@ -93,9 +153,9 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       body: JSON.stringify({ testName, testPhone })
     })
-    .then(response => response.text())
-    .then(data => console.log(data))
-    .catch(error => console.log(error));
+    .then(response => resultOperation(response.text(), response.status))
+    .then()
+    .catch(error => resultOperation(error));
   }
 
   let formSubmission = function(e) {

@@ -7,6 +7,9 @@ h2 {
 p {
   margin: 0;
 }
+.open {
+  display: block !important;
+}
 .modal {
   display: none;
   position: fixed;
@@ -103,6 +106,12 @@ p {
 .is-valid {
   border: 2px solid #43b02a !important; 
 }
+.modal__success {
+  color: #43b02a;
+}
+.modal__fail {
+  color: #f11b1b;
+}
 .modal__input-error {
   margin: 5px 0 0 0;
   text-align: left;
@@ -114,10 +123,7 @@ p {
   width: 100%;
   padding: 15px 15px;
   margin: 0 0 10px 0;
-  border: 1px solid #b7a088;
-  border-radius: 17.5px;
   color: #fefefe;
-  background-color: #b7a088;
   font-size: 14px;
   /* text-transform: uppercase; */
   font-weight: bolder;
@@ -130,6 +136,12 @@ p {
 }
 .modal__call-terms {
   font-size: 10px;
+}
+.modal__btn {
+  padding: 10px 15px;
+  border: 1px solid #b7a088;
+  border-radius: 17.5px;
+  background-color: #b7a088;
 }
 .modal__result-block {
   position: absolute;
@@ -156,8 +168,10 @@ p {
 .modal__result-title {
   margin-top: 20px;
 }
+.modal__result-title p {
+  margin-bottom: 5px;
+}
 .modal__result-title p:first-child {
-  color: #f11b1b;
   margin-bottom: 15px;
   font-size: 24px;
   font-weight: bold;
@@ -175,7 +189,6 @@ p {
   padding: 10px 15px;
   border: 1px solid #b7a088;
   border-radius: 17.5px;
-  color: #fefefe;
   background-color: #b7a088;
   font-size: 14px;
 
@@ -184,7 +197,36 @@ p {
   text-decoration: none;
   transition: all ease-in-out 0.3s;
 }
-
-.modal__result-title p {
-  margin-bottom: 5px;
+.modal__result-close span {
+  color: #fefefe;
+}
+.modal__result-call {
+  position: absolute;
+  bottom: 35px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fa-whatsapp, 
+.fa-telegram {
+  font-size: 28px;
+}
+.modal__result-phone {
+  color: rgb(42, 114, 238);
+  font-size: 22px;
+}
+.modal__result-telegram .modal__result-link {
+  margin: 0 !important;
+}
+.modal__result-link {
+  text-decoration: none;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.fa-telegram {
+  color: #23aaea;
+}
+.fa-whatsapp {
+  color: #3adc57;
 }
