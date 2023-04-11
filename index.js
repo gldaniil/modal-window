@@ -18,10 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".modal").classList.add('open');
   });
 
-  // Закрыть модальное окно при клике на крестик или за его пределами
-  document.querySelectorAll(".close, .modal").forEach(function(elem) {
-    elem.addEventListener("click", function() {
-      document.querySelector(".modal").classList.remove('open');
+  const closeModalWindow = () => {
+    document.querySelector(".modal").classList.remove('open');
       [...nameInputs].forEach((el) => { 
         el.value = "", 
         el.className = "",
@@ -32,6 +30,15 @@ document.addEventListener("DOMContentLoaded", function () {
         el.className = "",
         el.nextElementSibling.innerHTML = ""
       }); // Очистка поля ввода
+
+      let modalFoot = document.querySelectorAll('.modal-foot');
+      if (modalFoot) modalFoot.forEach((val) => val.remove())
+  }
+
+  // Закрыть модальное окно при клике на крестик или за его пределами
+  document.querySelectorAll(".close, .modal").forEach(function(elem) {
+    elem.addEventListener("click", function() {
+      closeModalWindow()
     });
   });
 
@@ -80,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
       icon = 'fa-check';
       title = 'Спасибо за обращение!';
       text = 'Наш юрист свяжется с Вами в течение 15 минут.';
-      end = `<div class="modal__result-close">
+      end = `<div class="modal__result-bottom">
         <span class="modal__result-link">
         Вернуться к странице</span>
       </div>`
@@ -111,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let el = document.querySelector('.modal-content')
     el.insertAdjacentHTML('beforeend', `
-    <div class="modal__result-block">
+    <div class="modal__result-block modal-foot">
         <div class="modal__result-body">
           <div class="modal__result-icon">
             <i class="fa-solid ${icon} ${color}"></i>
@@ -126,9 +133,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let links = el.lastElementChild.querySelectorAll('.modal__result-link')
     for (let link of links) {
-      link.addEventListener("click", function(e) {
-        console.log('clicked')
-      })
+      console.log(link.tagName)
+      if (link.tagName === 'SPAN') {
+        link.addEventListener("click", () => {
+          closeModalWindow()
+        })
+      }
     }
   }
 

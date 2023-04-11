@@ -51,6 +51,7 @@ p {
   color: #aaa;
   font-size: 28px;
   font-weight: bold;
+  z-index: 1;
 }
 
 .close:hover,
@@ -179,12 +180,14 @@ p {
 .modal__result-title p:last-child {
   line-height: 1.5;
 }
-.modal__result-close {
+.modal__result-bottom {
   position: absolute;
   bottom: 35px;
   right: 50%;
   transform: translate(50%, 0);
-  width: 50%;
+}
+.modal__result-bottom span {
+  color: #fefefe;
   margin: 0;
   padding: 10px 15px;
   border: 1px solid #b7a088;
@@ -196,9 +199,6 @@ p {
   text-align: center;
   text-decoration: none;
   transition: all ease-in-out 0.3s;
-}
-.modal__result-close span {
-  color: #fefefe;
 }
 .modal__result-call {
   position: absolute;
@@ -223,6 +223,10 @@ p {
   text-decoration: none;
   margin: 0 10px;
   cursor: pointer;
+}
+/* Цвет ссылки при нажатии с мобилки */
+.modal__result-link:focus {
+  color: #23aaea;
 }
 .fa-telegram {
   color: #23aaea;
