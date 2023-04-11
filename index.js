@@ -191,12 +191,12 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   for (let phoneInput of phoneInputs) {
-    phoneInput.addEventListener('blur', maskedPhoneValidation)
+    phoneInput.addEventListener('focusout', maskedPhoneValidation)
   }
 
   for (let nameInput of nameInputs) {
     nameInput.addEventListener("input", maskedName)
-    nameInput.addEventListener("blur", nameValidation)
+    nameInput.addEventListener("focusout", nameValidation)
   }
 
   // for (let submitBtn of submitBtns) {
