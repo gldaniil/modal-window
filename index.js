@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
       startsWith: '+7',
       country: 'Russia',
       placeholderChar: '_',
-      lazy: false
+      lazy: false,
+      max: 18,
+      oncomplete: addBlockMessage(this, false)
     });
 
   const phoneInputs = document.querySelectorAll("#phone");
@@ -211,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   for (let phoneInput of phoneInputs) {
-    phoneInput.addEventListener('input', maskedPhoneValidationLength)
+    // phoneInput.addEventListener('input', maskedPhoneValidationLength)
     phoneInput.addEventListener('blur', maskedPhoneValidation)
   }
 
