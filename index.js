@@ -151,6 +151,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function nameValidationLength(e) {
+    if (this.value.length < 2) {
+      addBlockMessage(this, true)
+    } else {
+      addBlockMessage(this, false)
+    }
+  }
+
   const dataRequest = async (testName, testPhone) => {
     console.log(testName, testPhone)
     await fetch("/api/form", {
@@ -190,13 +198,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  function maskedPhoneValidationLength(e) {
+    let counter = 0;
+    for (let val of this.value) {
+      if (!isNaN(parseInt(val))) {
+        counter++;
+      }
+    }
+    if (counter != 11) {
+      addBlockMessage(this, true)
+    } else {
+      addBlockMessage(this, false)
+    }
+  }
+
   for (let phoneInput of phoneInputs) {
-    phoneInput.addEventListener('focusout', maskedPhoneValidation)
+    phoneInput.addEventListener('input', maskedPhoneValidationLength)
+    phoneInput.addEventListener('blur', maskedPhoneValidation)
   }
 
   for (let nameInput of nameInputs) {
     nameInput.addEventListener("input", maskedName)
-    nameInput.addEventListener("change", nameValidation)
+    nameInput.addEventListener("input", nameValidationLength)
+    nameInput.addEventListener("blur", nameValidation)
   }
 
   // for (let submitBtn of submitBtns) {
