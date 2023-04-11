@@ -186,11 +186,9 @@ document.addEventListener("DOMContentLoaded", function () {
         addBlockMessage(el)
       } else counter++
     }
-    setTimeout(() => {
-      if (counter == 2) {
-        dataRequest(testName.value, testPhone.value)
-      }
-    }, 1000);
+    if (counter == 2) {
+      dataRequest(testName.value, testPhone.value)
+    }
   }
 
   function maskedName(e) {
