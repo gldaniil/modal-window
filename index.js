@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   for (let nameInput of nameInputs) {
     nameInput.addEventListener("input", maskedName)
-    nameInput.addEventListener("focusout", nameValidation)
+    nameInput.addEventListener("change", nameValidation)
   }
 
   // for (let submitBtn of submitBtns) {
