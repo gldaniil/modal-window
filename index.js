@@ -5,10 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
       startsWith: '+7',
       country: 'Russia',
       placeholderChar: '_',
-      lazy: false,
-      max: 18,
-      oncomplete: addBlockMessage(this, false)
-    });
+      lazy: false
+  });
 
   const phoneInputs = document.querySelectorAll("#phone");
   const nameInputs = document.querySelectorAll("#name");
@@ -188,9 +186,11 @@ document.addEventListener("DOMContentLoaded", function () {
         addBlockMessage(el)
       } else counter++
     }
-    if (counter == 2) {
-      dataRequest(testName.value, testPhone.value)
-    }
+    setTimeout(() => {
+      if (counter == 2) {
+        dataRequest(testName.value, testPhone.value)
+      }
+    }, 1000);
   }
 
   function maskedName(e) {
