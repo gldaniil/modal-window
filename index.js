@@ -205,13 +205,13 @@ document.addEventListener("DOMContentLoaded", function () {
         counter++;
       }
     }
-    if (counter == 11) {
+    if (counter === 11) {
       addBlockMessage(this, false)
     } 
   }
 
   for (let phoneInput of phoneInputs) {
-    // phoneInput.addEventListener('input', maskedPhoneValidationLength)
+    phoneInput.addEventListener('input', maskedPhoneValidationLength)
     phoneInput.addEventListener('blur', maskedPhoneValidation)
   }
 
