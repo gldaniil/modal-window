@@ -152,9 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function nameValidationLength(e) {
-    if (this.value.length < 2) {
-      addBlockMessage(this, true)
-    } else {
+    if (this.value.length > 2) {
       addBlockMessage(this, false)
     }
   }
