@@ -234,3 +234,7 @@ p {
 .fa-whatsapp {
   color: #3adc57;
 }
+
+.menu__socials {
+  display: none;
+}
