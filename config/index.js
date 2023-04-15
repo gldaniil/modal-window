@@ -1,4 +1,5 @@
 module.exports = {
   siteName: 'Express example',
-  adminEmail: 'example@test.com'
+  adminEmail: 'example@test.com',
+  token: '' 
 }
