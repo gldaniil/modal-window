@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "serve": "nodemon app.js",
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db": "nodemon models/db.js",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +14,8 @@
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",

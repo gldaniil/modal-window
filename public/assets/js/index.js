@@ -157,8 +157,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  const dataRequest = async (testName, testPhone) => {
-    console.log(testName, testPhone)
+  const dataRequest = async (clientName, clientPhone) => {
+    console.log(clientName, clientPhone)
     await fetch("/api/form", {
       method: "POST",
       headers: {
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ testName, testPhone })
+      body: JSON.stringify({ clientName, clientPhone })
     })
     .then(response => resultOperation(response.text(), response.status))
     .then()
@@ -177,15 +177,15 @@ document.addEventListener("DOMContentLoaded", function () {
   let formSubmission = function(e) {
     e.preventDefault()
     let counter = 0
-    const testName = e.target[0]
-    const testPhone = e.target[1]
-    for (let el of [testName, testPhone]) {
+    const clientName = e.target[0]
+    const clientPhone = e.target[1]
+    for (let el of [clientName, clientPhone]) {
       if (el.value === '' || el.value === '+7 (___) ___-__-__') {
         addBlockMessage(el)
       } else counter++
     }
     if (counter == 2) {
-      dataRequest(testName.value, testPhone.value)
+      dataRequest(clientName.value, clientPhone.value)
     }
   }
 
